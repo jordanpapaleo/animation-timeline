@@ -23,7 +23,7 @@ const startToCatalog = [
     name: 'title header y pos',
     delay: 1500 + 0,
     duration: 1800,
-    notes: `y pos -200px | delay: ${1500 + 0}, dur ${1800}`
+    notes: `y pos -200px | delay: ${1500 + 0}, dur ${1800}`,
   },
   {
     name: 'title header opacity',
@@ -35,7 +35,7 @@ const startToCatalog = [
     name: 'title chevron opacity',
     delay: 1500 + 1000,
     duration: 1800,
-    notes: `y pos 150px | delay: ${1500 + 1000}, dur ${1800}`
+    notes: `y pos 150px | delay: ${1500 + 1000}, dur ${1800}`,
   },
   {
     name: 'title chevron y pos',
@@ -49,7 +49,7 @@ function getCards(cardCount = 3, timingDelay = 2000) {
   const cardDelay = Math.round(1000 / 3)
 
   const cardTimings = new Array(cardCount).fill('').map((_, i) => {
-    const delay = timingDelay + (cardDelay * (i + 1))
+    const delay = timingDelay + cardDelay * (i + 1)
 
     return [
       {
@@ -70,14 +70,12 @@ function getCards(cardCount = 3, timingDelay = 2000) {
   return cardTimings.flat(1)
 }
 
-
 const app = new App({
   target: document.body,
   props: {
     totaltime: 7000,
-    timing: startToCatalog
-      .concat(getCards(3))
-  }
+    timing: startToCatalog.concat(getCards(3)),
+  },
 })
 
 export default app

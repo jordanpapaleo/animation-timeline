@@ -1,0 +1,37 @@
+:root {
+	--gridGap: 1vh;
+	--ff-default: 'Sf Pro Display';
+	--bordercolor: lightgray;
+	--copylight: grey;
+	--copy: #232323;
+}
+
+* {
+	box-sizing: border-box;
+	font-family: var(--ff-default), sans-serif;
+	line-height: 1;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 16px;
+	height: 100vh;
+	padding: 30px;
+	width: 100vw;
+	color: var(--copy);
+	overflow-y: scroll;
+}
+
+a {
+	color: rgb(0, 100, 200);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:visited {
+	color: rgb(0, 80, 160);
+}

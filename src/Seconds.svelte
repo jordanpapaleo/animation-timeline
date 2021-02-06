@@ -1,7 +1,12 @@
 <script>
   export let milliseconds
-  const seconds = Math.ceil(milliseconds / 1000)
 </script>
+
+<div id="seconds" style="--columns:{Math.ceil(milliseconds / 1000)}">
+  {#each Array(Math.ceil(milliseconds / 1000)) as _, i}
+    <div class="second-block"><span>{i * 1000}ms</span></div>
+  {/each}
+</div>
 
 <style>
   #seconds {
@@ -9,7 +14,8 @@
     grid-template-columns: repeat(var(--columns), 1fr);
   }
   .second-block {
-    border-left: 1px solid var(--bordercolor);
+    border-left: 1px solid var(--border-color);
+    transition: border-color var(--transition-duration);
     display: flex;
     flex-direction: column;
     height: 30px;
@@ -20,9 +26,3 @@
     border: none;
   }
 </style>
-
-<div id="seconds" style="--columns:{seconds}">
-  {#each Array(seconds) as _, i}
-    <div class="second-block"><span>{i * 1000}ms</span></div>
-  {/each}
-</div>

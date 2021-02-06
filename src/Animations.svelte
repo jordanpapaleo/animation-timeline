@@ -1,23 +1,43 @@
 <script>
-  export let timing
-  export let totaltime
-  // 60 is left and right padding
-  const bodyWidth = document.querySelector('body').offsetWidth - 60
+export let specs
+export let totalTime
+let width
+console.log('totalTime', totalTime)
 
-  function getTranslation(t) {
-    const ratio = t.delay / totaltime
-    return `translateX(${ratio * bodyWidth}px)`
-  }
 
-  function getWidth(t) {
-    const ratio = t.duration / totaltime
-    return `${ratio * bodyWidth}px`
-  }
+function getTranslation(t) {
+  const ratio = t.delay / totalTime
+  return `translateX(${ratio * width}px)`
+}
+
+function getWidth(t) {
+  const ratio = t.duration / totalTime
+  return `${ratio * width}px`
+}
 </script>
+
+<main id="animations" bind:clientWidth={width}>
+  <ol>
+    {#each specs as spec}
+      <li>
+        <div class="animation-block" style="
+          transform: {getTranslation(spec)};
+          width: {getWidth(spec)};
+        ">
+          {spec.name}<br />
+          <small>{spec.notes} | dur: {spec.duration}, del: {spec.delay},  ease: ({spec.easing})</small>
+        </div>
+      </li>
+    {/each}
+  </ol>
+</main>
+
 
 <style>
   #animations {
-    border: 1px solid var(--bordercolor);
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+    transition: border-color var(--transition-duration);
   }
 
   ol {
@@ -30,23 +50,11 @@
   }
 
   .animation-block {
-    background-color: orange;
+    background-color: var(--primary);
+    color: var(--white);
     border-radius: 10px;
     box-sizing: border-box;
     font-size: 0.75rem;
     padding: 10px;
   }
 </style>
-
-<main id="animations">
-  <ol>
-    {#each timing as t}
-      <li>
-        <div class="animation-block" style="
-            transform: {getTranslation(t)};
-            width: {getWidth(t)};
-          ">{t.name}</div>
-      </li>
-    {/each}
-  </ol>
-</main>

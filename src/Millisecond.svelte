@@ -3,25 +3,6 @@
   const seconds = Math.ceil(milliseconds / 1000)
 </script>
 
-<style>
-  #milliseconds {
-    display: grid;
-    grid-template-columns: repeat(var(--columns), 1fr);
-  }
-
-  .millesecond-block {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    font-size: 0.5rem;
-    color: grey;
-  }
-
-  .millesecond-block span {
-    border-left: 1px solid var(--bordercolor);
-    padding-left: 5px;
-  }
-</style>
-
 <div id="milliseconds" style="--columns:{seconds}">
   {#each Array(seconds) as _, i}
     <div class="millesecond-block">
@@ -38,3 +19,23 @@
     </div>
   {/each}
 </div>
+
+<style>
+  #milliseconds {
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+  }
+
+  .millesecond-block {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    font-size: 0.5rem;
+    color: grey;
+  }
+
+  .millesecond-block span {
+    border-left: 1px solid var(--border-color);
+    transition: border-color var(--transition-duration);
+    padding-left: 5px;
+  }
+</style>

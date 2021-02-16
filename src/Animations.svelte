@@ -25,7 +25,27 @@ function getWidth(t) {
           width: {getWidth(spec)};
         ">
           {spec.name}<br />
-          <small>{spec.notes} | dur: {spec.duration}, del: {spec.delay},  ease: ({spec.easing})</small>
+          <small>
+            {#if spec.notes}
+              <em>{spec.notes}</em>
+              <span style="padding-right: 7px; padding-left: 7px;">|</span>
+            {/if}
+            {#if spec.duration}
+              <span class="dls">
+                <strong>dur:</strong> {spec.duration}
+              </span>
+            {/if}
+            {#if spec.delay}
+              <span class="dls">
+                <strong>del:</strong> {spec.delay}
+              </span>
+            {/if}
+            {#if spec.easing}
+              <span class="dls">
+                <strong>ease:</strong> ({spec.easing})
+              </span>
+            {/if}
+          </small>
         </div>
       </li>
     {/each}
@@ -34,6 +54,9 @@ function getWidth(t) {
 
 
 <style>
+  .dls {
+    margin-right: 5px;
+  }
   #animations {
     box-sizing: border-box;
     border: 1px solid var(--border-color);
